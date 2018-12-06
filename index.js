@@ -5,13 +5,14 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-urlMongo='mongodb://localhost:27017/speechRecognition'; //speechRecognition to nazwa bazy - do wyklikania w compass
+urlMongo='mongodb+srv://MongoDBUser:haslo@mongocluster-z9xx3.azure.mongodb.net/test?retryWrites=true'; //string do połączenia ze zdalną bazą założoną na MongoDB Atlas
+	// string do połączenia z poziomu Compass'a - mongodb+srv://MongoDBUser:haslo@mongocluster-z9xx3.azure.mongodb.net/admin - Ctrl+C i Compass sam wypełni dane do połączenia
 
 app.get('/', function (req, res) { //obsługa get /
 
 	MongoClient.connect(urlMongo, { useNewUrlParser: true }, function (err, db) { //polączenie do mongoła ({ useNewUrlParser: true } - by się nie rzucał że przestarzałe)
 	  if (err) throw err;
-	  var dbo = db.db('speechRecognition'); //znowu nazwa bazy
+	  var dbo = db.db('speechRecognition'); //nazwa bazy
 	  
 	  dbo.collection('words').find().toArray(function (err, result) { //wyswietlenie, wyszukanie wszystkich dokumentuf z kolekcji (tabeli) words 
 		if (err) throw err;
