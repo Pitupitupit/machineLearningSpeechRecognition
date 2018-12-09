@@ -1,18 +1,11 @@
 {
-  "name": "new-folder",
+  "name": "speech-recognizer",
   "version": "1.0.0",
-  "description": "hehe deskripszyn",
-  "main": "index.js",
+  "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startServer": "cd server && npm start",
+    "startClient": "cd client && npm run dev"
   },
-  "keywords": [
-    "xD"
-  ],
-  "author": "Pitu",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.4",
-    "mongodb": "^3.1.10"
-  }
+  "license": "ISC"
 }
