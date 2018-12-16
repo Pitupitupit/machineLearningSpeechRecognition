@@ -57,7 +57,9 @@ export default {
     };
   },
   methods: {
-    captureSpeech: () => recognition.start()
+    captureSpeech: function() {
+      recognition.start();
+    }
   }
 };
 </script>

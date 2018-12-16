@@ -17,7 +17,7 @@ export default {
     };
   },
   methods: {
-    saveAlternative: () => {
+    saveAlternative: function() {
       HTTP.post("/speechRecognition", {
         word: this.word,
         weight: this.weight
