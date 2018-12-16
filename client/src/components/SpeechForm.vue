@@ -1,7 +1,7 @@
 <template>
   <div class="speechForm">
     <div>
-      <button v-on:click="captureSpeech">{{message}}</button>
+      <button @click="captureSpeech">{{message}}</button>
     </div>
     <div class="alternativesInput">
       <div>We display {{maxAlternatives}} alternatives, You can change it</div>
@@ -9,12 +9,9 @@
     </div>
     <div>
       <div>Results:</div>
-      {{alternatives}}
-      <speech-list-item
-        v-for="(alternative, index) in alternatives"
-        alternative="alternative"
-        :key="index"
-      />
+      <div v-for="(word, index) in alternatives" :key="index">
+        <speech-list-element :word="word" :key="index"/>
+      </div>
     </div>
     <div>Backend test:
       <ul>
@@ -28,9 +25,14 @@
 </template>
 
 <script>
-import { HTTP } from "../services/httpService.js";
+import { HTTP } from "@/services/httpService";
+import SpeechListElement from "@/components/SpeechListElement";
+let recognition;
 export default {
-  name: "SpeechForm",
+  name: "speech-form",
+  components: {
+    "speech-list-element": SpeechListElement
+  },
   data() {
     return {
       message: "Click and speak",
@@ -43,24 +45,19 @@ export default {
     HTTP.get("/speechRecognition")
       .then(response => (this.backendTestData = response.data))
       .catch(error => error);
-    this.setupSpeechRecognition();
+    window.SpeechRecognition =
+      window.webkitSpeechRecognition || window.SpeechRecognition;
+    recognition = new window.SpeechRecognition();
+    recognition.maxAlternatives = this.maxAlternatives;
+    recognition.lang = "pl-PL";
+    recognition.onresult = event => {
+      this.alternatives = Object.values(event.results[0]).map(
+        alternative => alternative.transcript
+      );
+    };
   },
   methods: {
-    setupSpeechRecognition: () => {
-      window.SpeechRecognition =
-        window.webkitSpeechRecognition || window.SpeechRecognition;
-    },
-    captureSpeech: () => {
-      const recognition = new window.SpeechRecognition();
-      recognition.maxAlternatives = this.maxAlternatives;
-      recognition.start();
-      recognition.onresult = event => {
-        this.alternatives = Object.values(event.results[0]).map(
-          alternative => alternative.transcript
-        );
-      };
-      recognition.onspeechend = () => recognition.stop();
-    }
+    captureSpeech: () => recognition.start()
   }
 };
 </script>
