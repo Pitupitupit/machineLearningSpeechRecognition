@@ -7,26 +7,26 @@
 </template>
 
 <script>
-import { HTTP } from "@/services/httpService";
+import { HTTP } from '@/services/httpService'
 export default {
-  name: "speech-list-element",
-  props: ["word"],
-  data() {
+  name: 'speech-list-element',
+  props: ['word'],
+  data () {
     return {
       weight: 0
-    };
+    }
   },
   methods: {
-    saveAlternative: function() {
-      HTTP.post("/speechRecognition", {
+    saveAlternative: function () {
+      HTTP.post('/speechRecognition', {
         word: this.word,
         weight: this.weight
       })
         .then(result => result)
-        .catch(error => error);
+        .catch(error => error)
     }
   }
-};
+}
 </script>
 
 <style scoped>

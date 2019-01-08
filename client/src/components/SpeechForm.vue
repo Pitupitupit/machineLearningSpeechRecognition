@@ -1,7 +1,7 @@
 <template>
   <div class="speechForm">
     <div>
-      <button @click="captureSpeech">{{message}}</button>
+      <a class='button' @click="captureSpeech">{{message}}</a>
     </div>
     <div class="alternativesInput">
       <div>We display {{maxAlternatives}} alternatives, You can change it</div>
@@ -25,43 +25,43 @@
 </template>
 
 <script>
-import { HTTP } from "@/services/httpService";
-import SpeechListElement from "@/components/SpeechListElement";
-let recognition;
+import { HTTP } from '@/services/httpService'
+import SpeechListElement from '@/components/SpeechListElement'
+let recognition
 export default {
-  name: "speech-form",
+  name: 'speech-form',
   components: {
-    "speech-list-element": SpeechListElement
+    'speech-list-element': SpeechListElement
   },
-  data() {
+  data () {
     return {
-      message: "Click and speak",
+      message: 'Click and speak',
       maxAlternatives: 10,
       alternatives: [],
       backendTestData: []
-    };
+    }
   },
-  created() {
-    HTTP.get("/speechRecognition")
+  created () {
+    HTTP.get('/speechRecognition')
       .then(response => (this.backendTestData = response.data))
-      .catch(error => error);
+      .catch(error => error)
     window.SpeechRecognition =
-      window.webkitSpeechRecognition || window.SpeechRecognition;
-    recognition = new window.SpeechRecognition();
-    recognition.maxAlternatives = this.maxAlternatives;
-    recognition.lang = "pl-PL";
+      window.webkitSpeechRecognition || window.SpeechRecognition
+    recognition = new window.SpeechRecognition()
+    recognition.maxAlternatives = this.maxAlternatives
+    recognition.lang = 'pl-PL'
     recognition.onresult = event => {
       this.alternatives = Object.values(event.results[0]).map(
         alternative => alternative.transcript
-      );
-    };
+      )
+    }
   },
   methods: {
-    captureSpeech: function() {
-      recognition.start();
+    captureSpeech: function () {
+      recognition.start()
     }
   }
-};
+}
 </script>
 
 <style scoped>
