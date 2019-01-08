@@ -1,10 +1,10 @@
 <template>
   <div class="speechForm">
     <div>
-      <a class='button' @click="captureSpeech">{{message}}
-        <font-awesome-icon icon="coffee" /></a>
+      <button class='speak-button' @click="captureSpeech">{{message}}
+        <font-awesome-icon icon="comment-dots" /></button>
     </div>
-    <div class="alternativesInput">
+    <div class="alternatives-input">
       <div>We display {{maxAlternatives}} alternatives, You can change it</div>
       <input type="number" min="1" max="10" v-model="maxAlternatives">
     </div>
@@ -73,8 +73,17 @@ li {
 a {
   color: #42b983;
 }
-.alternativesInput {
+.alternatives-input {
   display: inline-flex;
   padding: 20px;
 }
+
+.speak-button {
+  font-size: 1.5em;
+  border: none;
+  border-radius: 10%;
+  padding: 20px;
+  background-color: #41B883;
+}
+
 </style>
