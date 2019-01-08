@@ -1,7 +1,8 @@
 <template>
   <div class="speechForm">
     <div>
-      <a class='button' @click="captureSpeech">{{message}}</a>
+      <a class='button' @click="captureSpeech">{{message}}
+        <font-awesome-icon icon="coffee" /></a>
     </div>
     <div class="alternativesInput">
       <div>We display {{maxAlternatives}} alternatives, You can change it</div>
@@ -12,14 +13,6 @@
       <div v-for="(word, index) in alternatives" :key="index">
         <speech-list-element :word="word" :key="index"/>
       </div>
-    </div>
-    <div>Backend test:
-      <ul>
-        <li
-          v-for="backendTest in backendTestData"
-          :key="backendTest._id"
-        >{{backendTest.word}} {{backendTest.weight}}</li>
-      </ul>
     </div>
   </div>
 </template>
