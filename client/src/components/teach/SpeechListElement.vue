@@ -1,7 +1,7 @@
 <template>
   <div class="speechListElement">
     <div class='phrase'>"{{word}}"</div>
-    <div>
+    <div class='hint-score'>
       weight:
       <input type="number" min="1" max="10" v-model="weight">
       <button @click="saveAlternative">Save</button>
@@ -34,10 +34,14 @@ export default {
 
 <style scoped>
   .speechListElement {
-    padding: 10px 0;
+    padding: 20px;
   }
   .phrase {
     font-size: 1.3rem;
     line-height: 1.5;
+  }
+
+  .hint-score {
+    display: inline-block;
   }
 </style>

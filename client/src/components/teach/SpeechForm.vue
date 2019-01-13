@@ -14,8 +14,10 @@
         <button class='speak-button' @click="captureSpeech">{{message}}
           <font-awesome-icon icon="comment-dots" /></button>
       </div>
-      <div v-for="(word, index) in alternatives" :key="index">
-        <speech-list-element :word="word" :key="index"/>
+      <div class='hints'>
+        <div v-for="(word, index) in alternatives" :key="index">
+          <speech-list-element :word="word" :key="index"/>
+        </div>
       </div>
     </div>
   </div>
@@ -32,7 +34,7 @@ export default {
   },
   data () {
     return {
-      message: 'Speak and teach',
+      message: 'Teach the app',
       maxAlternatives: 10,
       lang: 'pl-PL',
       alternatives: []
@@ -106,4 +108,10 @@ a {
 #lang, #alternatives {
   width: 100%;
 }
+
+.hints {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 </style>

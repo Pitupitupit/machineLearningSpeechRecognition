@@ -23,7 +23,7 @@ export default {
   name: 'display-command',
   data () {
     return {
-      message: 'Speak command',
+      message: 'Say command',
       maxAlternatives: 10,
       lang: 'pl-PL',
       alternatives: []

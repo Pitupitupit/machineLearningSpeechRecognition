@@ -23,4 +23,8 @@ export default {
     color: #fff;
     text-decoration: none;
 }
+
+.nav-item:active {
+    text-decoration: underline;
+}
 </style>
