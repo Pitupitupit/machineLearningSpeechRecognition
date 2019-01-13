@@ -14,10 +14,8 @@
         <button class='speak-button' @click="captureSpeech">{{message}}
           <font-awesome-icon icon="comment-dots" /></button>
       </div>
-      <div>
-        <div v-for="(word, index) in alternatives" :key="index">
-          <speech-list-element :word="word" :key="index"/>
-        </div>
+      <div v-for="(word, index) in alternatives" :key="index">
+        <speech-list-element :word="word" :key="index"/>
       </div>
     </div>
   </div>
@@ -34,7 +32,7 @@ export default {
   },
   data () {
     return {
-      message: 'Click and speak',
+      message: 'Speak and teach',
       maxAlternatives: 10,
       lang: 'pl-PL',
       alternatives: []
@@ -44,8 +42,6 @@ export default {
     window.SpeechRecognition =
       window.webkitSpeechRecognition || window.SpeechRecognition
     recognition = new window.SpeechRecognition()
-    recognition.maxAlternatives = this.maxAlternatives
-    recognition.lang = this.lang
     recognition.onresult = event => {
       this.alternatives = Object.values(event.results[0]).map(
         alternative => alternative.transcript
@@ -54,6 +50,8 @@ export default {
   },
   methods: {
     captureSpeech: function () {
+      recognition.maxAlternatives = this.maxAlternatives
+      recognition.lang = this.lang
       recognition.start()
     }
   }

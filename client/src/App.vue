@@ -1,12 +1,17 @@
 <template>
   <div id="app">
+    <navigation-bar/>
     <router-view/>
   </div>
 </template>
 
 <script>
+import NavigationBar from '@/components/navigation/navigationBar'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'navigation-bar': NavigationBar
+  }
 }
 </script>
 
@@ -16,7 +21,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 30px;
 }
 
 button {

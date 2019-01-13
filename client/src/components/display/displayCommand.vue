@@ -1,8 +1,23 @@
 <template>
+<div class='display-container'>
+<div class='settings-container'>
+  <h1>Settings</h1>
+  <label for='lang'>Phrases language:</label>
+  <input id='lang' type="text" v-model="lang">
+</div>
+  <div class='speak-container'>
+    <img src="@/assets/logo.png">
+    <div class="speechForm">
+      <div>
+        <button class='speak-button' @click="captureSpeech">{{message}}
+          <font-awesome-icon icon="comment-dots" /></button>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
-import { HTTP } from '@/services/httpService'
 let recognition
 export default {
   name: 'display-command',
@@ -10,16 +25,14 @@ export default {
     return {
       message: 'Speak command',
       maxAlternatives: 10,
-      alternatives: [],
-      backendTestData: []
+      lang: 'pl-PL',
+      alternatives: []
     }
   },
   created () {
     window.SpeechRecognition =
       window.webkitSpeechRecognition || window.SpeechRecognition
     recognition = new window.SpeechRecognition()
-    recognition.maxAlternatives = this.maxAlternatives;
-    recognition.lang = 'pl-PL'
     recognition.onresult = event => {
       this.alternatives = Object.values(event.results[0]).map(
         alternative => alternative.transcript
@@ -28,6 +41,8 @@ export default {
   },
   methods: {
     captureSpeech: function () {
+      recognition.maxAlternatives = this.maxAlternatives
+      recognition.lang = 'pl-PL'
       recognition.start()
     }
   }
@@ -35,4 +50,51 @@ export default {
 </script>
 
 <style scoped>
+h1,
+h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+
+.display-container {
+  display: flex;
+}
+
+.settings-container {
+  flex: 10%;
+  padding: 10px;
+}
+
+.speak-container {
+    flex: 90%;
+    text-align: center;
+}
+
+.settings-item {
+  width: 100%;
+  display: inline-flex;
+}
+
+.alternatives-input {
+  display: inline-flex;
+  padding: 20px;
+}
+
+.speak-button {
+  font-size: 1.5rem;
+}
+
+#lang, #alternatives {
+  width: 100%;
+}
 </style>
