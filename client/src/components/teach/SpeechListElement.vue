@@ -1,6 +1,6 @@
 <template>
   <div class="speechListElement">
-    {{word}} weight:
+    <label>{{word}} weight:</label>
     <input type="number" min="1" max="10" v-model="weight">
     <button @click="saveAlternative">Save</button>
   </div>
@@ -30,4 +30,15 @@ export default {
 </script>
 
 <style scoped>
+input {
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s;
+}
 </style>
