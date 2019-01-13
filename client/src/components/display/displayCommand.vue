@@ -2,7 +2,7 @@
 <div class='display-container'>
 <div class='settings-container'>
   <h2>Settings</h2>
-  <label for='lang'>Phrases language:</label>
+  <label for='lang'>Command language:</label>
   <input id='lang' type="text" v-model="lang">
 </div>
   <div class='speak-container'>
