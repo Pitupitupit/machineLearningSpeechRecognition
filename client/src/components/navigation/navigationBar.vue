@@ -14,11 +14,13 @@ export default {
 <style scoped>
 .menu-bar {
     width: 100%;
-    background-color: #fff;
+    background-color: #42b983;
     display: inline-flex;
 }
 
 .nav-item {
     padding: 20px;
+    color: #fff;
+    text-decoration: none;
 }
 </style>
