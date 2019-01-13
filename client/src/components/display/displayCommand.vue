@@ -12,6 +12,9 @@
         <button class='speak-button' @click="captureSpeech">{{message}}
           <font-awesome-icon icon="comment-dots" /></button>
       </div>
+      <div class='command'>
+          "{{this.alternatives[0]}}"
+      </div>
     </div>
   </div>
 </div>
@@ -42,7 +45,7 @@ export default {
   methods: {
     captureSpeech: function () {
       recognition.maxAlternatives = this.maxAlternatives
-      recognition.lang = 'pl-PL'
+      recognition.lang = this.lang
       recognition.start()
     }
   }
@@ -96,5 +99,11 @@ a {
 
 #lang, #alternatives {
   width: 100%;
+}
+
+.command {
+  padding: 20px;
+  color: #42b983;
+  font-size: 3rem;
 }
 </style>
