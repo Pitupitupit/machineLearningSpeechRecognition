@@ -1,7 +1,7 @@
 <template>
 <div class='form-container'>
 <div class='settings-container'>
-  <h1>Settings</h1>
+  <h2>Settings</h2>
   <label for='alternatives'>Alternatives:</label>
   <input id='alternatives' type="number" min="1" max="10" v-model="maxAlternatives">
   <label for='lang'>Phrases language:</label>

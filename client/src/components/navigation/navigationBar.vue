@@ -1,7 +1,7 @@
 <template>
     <nav class='menu-bar'>
-        <div class='nav-item'>Teach</div>
-        <div class='nav-item'>Command</div>
+        <router-link to='/' class='nav-item'>Teach</router-link>
+        <router-link to='/main' class='nav-item'>Command</router-link>
     </nav>
 </template>
 
