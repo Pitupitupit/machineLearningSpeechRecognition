@@ -1,9 +1,10 @@
 <template>
 <div class='form-container'>
-<div class='properties-container'>
+<div class='settings-container'>
+  <h1>Settings</h1>
   <label for='alternatives'>Alternatives:</label>
   <input id='alternatives' type="number" min="1" max="10" v-model="maxAlternatives">
-  <label for='lang'>Language:</label>
+  <label for='lang'>Phrases language:</label>
   <input id='lang' type="text" v-model="lang">
 </div>
   <div class='speak-alternatives-container'>
@@ -14,7 +15,6 @@
           <font-awesome-icon icon="comment-dots" /></button>
       </div>
       <div>
-        <div>Results:</div>
         <div v-for="(word, index) in alternatives" :key="index">
           <speech-list-element :word="word" :key="index"/>
         </div>
@@ -81,9 +81,14 @@ a {
   display: flex;
 }
 
-.properties-container {
+.settings-container {
   flex: 10%;
   padding: 10px;
+}
+
+.settings-item {
+  width: 100%;
+  display: inline-flex;
 }
 
 .speak-alternatives-container {
@@ -97,36 +102,10 @@ a {
 }
 
 .speak-button {
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s;
-    background-color: #42b983;
-    color: #fff;
+  font-size: 1.5rem;
 }
-.speak-button:focus {outline:0;}
 
 #lang, #alternatives {
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
-  transition: border-color .15s;
+  width: 100%;
 }
-
 </style>
