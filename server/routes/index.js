@@ -1,3 +1,4 @@
 module.exports = {
-    SpeechRecognitionRoute: require('./SpeechRecognitionRoute')
+    SpeechRecognitionRoute: require('./SpeechRecognitionRoute'),
+    LoginRoute: require('./LoginRoute')
 }

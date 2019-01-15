@@ -6,13 +6,14 @@ import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueSession from 'vue-session'
 
 library.add(faCommentDots)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
-
+Vue.use(VueSession)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

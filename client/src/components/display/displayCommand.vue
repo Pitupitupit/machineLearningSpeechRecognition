@@ -13,7 +13,7 @@
           <font-awesome-icon icon="comment-dots" /></button>
       </div>
       <div class='command'>
-          "{{this.alternatives[0]}}"
+          {{this.alternatives[0]}}
       </div>
     </div>
   </div>

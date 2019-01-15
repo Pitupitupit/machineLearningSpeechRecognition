@@ -12,4 +12,5 @@ connect().then(db => {
 	app.use(cors(corsOptions));
 	app.use(bodyParser.json());
 	app.use('/speechRecognition', routes.SpeechRecognitionRoute._router);
+	app.use('/login', routes.LoginRoute._router);
 }).catch(error => error);
