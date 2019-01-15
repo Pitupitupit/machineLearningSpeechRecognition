@@ -13,7 +13,7 @@
           <font-awesome-icon icon="comment-dots" /></button>
       </div>
       <div class='command'>
-          {{this.alternatives[0]}}
+          "{{this.word}}"
       </div>
     </div>
   </div>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { HTTP } from '@/services/httpService'
 let recognition
 export default {
   name: 'display-command',
@@ -29,7 +30,8 @@ export default {
       message: 'Say command',
       maxAlternatives: 10,
       lang: 'pl-PL',
-      alternatives: []
+      alternatives: [],
+      word: ''
     }
   },
   created () {
@@ -40,6 +42,12 @@ export default {
       this.alternatives = Object.values(event.results[0]).map(
         alternative => alternative.transcript
       )
+      HTTP.post('/speechRecognition/main', this.alternatives).then(response => {
+        this.word = response.data.finalWord.word
+      },
+      response => {
+        // error
+      })
     }
   },
   methods: {
